@@ -1,0 +1,13 @@
+/build
+/dist
+/dist/lib
+*.class
+/target
+.idea/
+.idea/*
+.settings/
+.settings/*
+.bin/*
+metadao.log
+.classpath
+.gradle
