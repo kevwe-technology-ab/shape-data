@@ -1,12 +1,11 @@
 package net.lulli.shape.data.helper.sqlite;
 
-import net.lulli.shape.data.connection.AbstractDbConnectionManager;
-import net.lulli.utils.PropertiesManager;
-import org.apache.log4j.Logger;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
+import net.lulli.shape.data.connection.AbstractDbConnectionManager;
+import net.lulli.utils.PropertiesManager;
+import org.apache.log4j.Logger;
 
 public class SQLiteDbManager extends AbstractDbConnectionManager {
 
@@ -85,12 +84,12 @@ public class SQLiteDbManager extends AbstractDbConnectionManager {
   private SQLiteDbManager(String dbName) {
     PropertiesManager configManager = PropertiesManager.getInstance();
     Properties dbProperties = configManager.getProperties();
-    JDBC_URL = "jdbc:sqlite:" + dbName; // (String) dbProperties.get("etl_runquery.sqlite.JDBC_URL");
+    JDBC_URL =
+        "jdbc:sqlite:" + dbName; // (String) dbProperties.get("etl_runquery.sqlite.JDBC_URL");
     log.debug("JDBC_URL=" + JDBC_URL);
 
     DRIVER_CLASS_NAME = (String) dbProperties.get("database.sqlite.DRIVER_CLASS_NAME");
     DB_USER = (String) dbProperties.get("database.sqlite.DB_USER");
     DB_PASSWORD = (String) dbProperties.get("database.sqlite.DB_PASSWORD");
   }
-
 }

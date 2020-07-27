@@ -70,13 +70,13 @@ public class DbConnectionParameters {
       this.password = password;
       return this;
     }
-    
+
     public Builder setSchema(String schema) {
-      
+
       this.schema = schema;
       return this;
     }
-    
+
     public DbConnectionParameters build() {
       return new DbConnectionParameters(this);
     }
@@ -84,7 +84,5 @@ public class DbConnectionParameters {
     public void setPoolSize(int poolSize) {
       this.poolSize = poolSize;
     }
-
-   
   }
 }

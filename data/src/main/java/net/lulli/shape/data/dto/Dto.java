@@ -1,9 +1,7 @@
 package net.lulli.shape.data.dto;
 
-
 import java.util.LinkedHashMap;
 import java.util.Set;
-
 import net.lulli.shape.data.api.IDto;
 
 public class Dto implements IDto {

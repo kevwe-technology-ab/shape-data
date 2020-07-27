@@ -81,5 +81,4 @@ public final class StrictCheck {
     }
     return false;
   }
-
 }

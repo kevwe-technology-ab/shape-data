@@ -3,12 +3,11 @@ package net.lulli.shape.data.impl.jdbc.internal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.dao.DaoUtils;
 
 public abstract class InsertHandlerInterface<T> {
-   
+
   public int insertReusePreparedStatement(IDto dto, PreparedStatement preparedStatement) {
     int retValue = 0;
     try {

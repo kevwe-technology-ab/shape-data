@@ -1,11 +1,9 @@
 package net.lulli.shape.data.dto;
 
-
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
-
 import net.lulli.shape.data.api.IWheresMap;
 
 public class Wheres implements IWheresMap {

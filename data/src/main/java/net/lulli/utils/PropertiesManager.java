@@ -1,12 +1,10 @@
 package net.lulli.utils;
 
-import org.apache.log4j.Logger;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import org.apache.log4j.Logger;
 
 public class PropertiesManager {
   private static PropertiesManager istanza;
@@ -56,5 +54,4 @@ public class PropertiesManager {
   public static PropertiesManager fromFile(File configurationFile) {
     return new PropertiesManager(configurationFile);
   }
-
 }

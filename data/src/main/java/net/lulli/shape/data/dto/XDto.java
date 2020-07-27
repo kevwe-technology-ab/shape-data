@@ -1,13 +1,10 @@
-
 package net.lulli.shape.data.dto;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 import net.lulli.shape.data.api.IDto;
-
 
 public final class XDto implements IDto {
   public final String tableName;
@@ -17,15 +14,14 @@ public final class XDto implements IDto {
   public XDto(String tablename, Map<String, String> fields) {
     this.tableName = tablename;
     this.fields = fields;
-    
+
     payload = new HashMap<String, String>();
   }
-
 
   public String tableName() {
     return this.tableName;
   }
-  
+
   public Map<String, String> fields() {
     return Collections.unmodifiableMap(fields);
   }
@@ -73,5 +69,4 @@ public final class XDto implements IDto {
   public void remove(String key) {
     payload.remove(key);
   }
-
 }

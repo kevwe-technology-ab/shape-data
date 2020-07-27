@@ -5,10 +5,8 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.utils.PropertiesManager;
+import org.apache.log4j.Logger;
 
 public class DbManager extends AbstractDbConnectionManager {
   public static DbManager INSTANCE = new DbManager();

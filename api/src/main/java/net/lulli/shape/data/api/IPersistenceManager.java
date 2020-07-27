@@ -22,8 +22,7 @@ public interface IPersistenceManager extends IDialect {
 
   public void setSQLDialect(String sqlDialect);
 
-  public List<IDto> query(String sql, String ... args);
+  public List<IDto> query(String sql, String... args);
 
-  public int execute(String sql, String ... args);
-
+  public int execute(String sql, String... args);
 }

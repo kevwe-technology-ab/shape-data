@@ -7,15 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Formatter;
-
+import net.lulli.shape.data.api.IDto;
 import org.apache.log4j.Logger;
 
-import net.lulli.shape.data.api.IDto;
-
-
 public class DaoUtils {
-  private DaoUtils() {
-  }
+  private DaoUtils() {}
 
   static Logger log = Logger.getLogger("DaoUtil");
 
@@ -25,7 +21,8 @@ public class DaoUtils {
     }
   }
 
-  public static PreparedStatement createStatement(Connection conn, String sqlString) throws SQLException {
+  public static PreparedStatement createStatement(Connection conn, String sqlString)
+      throws SQLException {
     return conn.prepareStatement(sqlString);
   }
 
@@ -54,7 +51,8 @@ public class DaoUtils {
     return result;
   }
 
-  public static int executePreparedStatement(IDto dto, PreparedStatement pstmt) throws SQLException {
+  public static int executePreparedStatement(IDto dto, PreparedStatement pstmt)
+      throws SQLException {
     int paramIndex = 1;
     for (String key : dto.keySet()) {
       Object kvalue = dto.get(key);

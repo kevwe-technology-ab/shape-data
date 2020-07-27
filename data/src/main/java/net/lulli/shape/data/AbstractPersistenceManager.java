@@ -7,20 +7,18 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
+import net.lulli.shape.data.api.IDto;
+import net.lulli.shape.data.api.IWheresMap;
+import net.lulli.shape.data.connection.AbstractDbConnectionManager;
+import net.lulli.shape.data.dao.DaoFactory;
+import net.lulli.shape.data.dto.Dto;
+import net.lulli.shape.data.dto.Wheres;
+import net.lulli.shape.data.impl.jdbc.Dao;
+import net.lulli.shape.data.model.SQLDialect;
 import org.apache.log4j.Logger;
 
-import net.lulli.shape.data.api.IDto;
-import net.lulli.shape.data.api.IPersistenceManager;
-import net.lulli.shape.data.api.IWheresMap;
-import net.lulli.shape.data.dao.DaoFactory;
-import net.lulli.shape.data.dto.Wheres;
-import net.lulli.shape.data.dto.Dto;
-import net.lulli.shape.data.impl.jdbc.Dao;
-import net.lulli.shape.data.connection.AbstractDbConnectionManager;
-import net.lulli.shape.data.model.SQLDialect;
-
-public abstract class AbstractPersistenceManager implements net.lulli.shape.data.api.IPersistenceManager {
+public abstract class AbstractPersistenceManager
+    implements net.lulli.shape.data.api.IPersistenceManager {
   static Logger log = Logger.getLogger("AbstractMetaPersistenceManager");
   protected String sqlDialect = SQLDialect.STANDARD;
 
@@ -169,7 +167,7 @@ public abstract class AbstractPersistenceManager implements net.lulli.shape.data
       Hashtable wheres = null;
       List<IDto> risultati = query("select * from " + tableName);
       IDto rigaZero = risultati.get(0); // BAD: funziona solo se la tabella ha almeno 1
-                                                                 // record!!
+      // record!!
       Set<String> keys = rigaZero.keySet();
       Iterator<String> iter = keys.iterator();
       String field;
@@ -218,11 +216,11 @@ public abstract class AbstractPersistenceManager implements net.lulli.shape.data
   public String getSQLDialect() {
     return sqlDialect;
   }
-  
-  public List<IDto> query(String sql, String ... args) {
-    return query(String.format(sql, (Object[])args));
+
+  public List<IDto> query(String sql, String... args) {
+    return query(String.format(sql, (Object[]) args));
   }
-  
+
   private List<IDto> query(String sqlInputString) {
     log.trace("BEGIN search");
     AbstractDbConnectionManager dbManager = getDbConnectionManager();
@@ -244,9 +242,9 @@ public abstract class AbstractPersistenceManager implements net.lulli.shape.data
     }
     return results;
   }
-  
-  public int execute(String sql, String ... args) {
-    return execute(String.format(sql, (Object[])args));
+
+  public int execute(String sql, String... args) {
+    return execute(String.format(sql, (Object[]) args));
   }
 
   private int execute(String sqlInputString) {

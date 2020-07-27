@@ -4,19 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IWheresMap;
 import net.lulli.shape.data.dao.DaoUtils;
 import net.lulli.shape.data.dto.Dto;
+import org.apache.log4j.Logger;
 
 public class DeleteHandler {
   static Logger log = Logger.getLogger("DeleteHandler");
 
-  private DeleteHandler() {
-  }
+  private DeleteHandler() {}
 
   public static int deleteLegacy(IDto dto, IWheresMap wheres, Connection conn) throws SQLException {
     int deletedNo = -1;
@@ -42,4 +39,4 @@ public class DeleteHandler {
     }
     return deletedNo;
   }
- }
+}

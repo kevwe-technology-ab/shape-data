@@ -3,11 +3,9 @@ package net.lulli.shape.data.helper.generic;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.shape.data.connection.AbstractDbConnectionManager;
 import net.lulli.shape.data.helper.DbConnectionParameters;
+import org.apache.log4j.Logger;
 
 public class GenericDbManager extends AbstractDbConnectionManager {
   static Logger log = Logger.getLogger("GenericDbManager");
@@ -29,8 +27,9 @@ public class GenericDbManager extends AbstractDbConnectionManager {
     for (int i = 0; i < poolSize; i++) {
       try {
         Class.forName(driveClassName);
-        singleConn = DriverManager.getConnection(staticParams.jdbcUrl, staticParams.user,
-            staticParams.password);
+        singleConn =
+            DriverManager.getConnection(
+                staticParams.jdbcUrl, staticParams.user, staticParams.password);
         connections.add(singleConn);
       } catch (Exception e) {
         log.error(e.getMessage());

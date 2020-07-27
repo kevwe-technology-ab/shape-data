@@ -3,9 +3,8 @@ package net.lulli.shape.data.dto.field;
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.dto.FieldType;
 
-public class IntegerField implements FieldType{
-  public IntegerField() {
-  }
+public class IntegerField implements FieldType {
+  public IntegerField() {}
 
   @Override
   public Boolean check(IDto dto, String fieldName) {
@@ -14,5 +13,4 @@ public class IntegerField implements FieldType{
     }
     return false;
   }
-
 }

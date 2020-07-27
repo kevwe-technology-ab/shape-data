@@ -6,36 +6,32 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.shape.data.api.IDao;
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IWheresMap;
 import net.lulli.shape.data.dao.DaoUtils;
-import net.lulli.shape.data.dto.Dto;
 import net.lulli.shape.data.impl.jdbc.internal.DeleteHandler;
 import net.lulli.shape.data.impl.jdbc.internal.InsertHandler;
 import net.lulli.shape.data.impl.jdbc.internal.SelectHandler;
 import net.lulli.shape.data.impl.jdbc.internal.TableHandler;
 import net.lulli.shape.data.impl.jdbc.internal.UpdateHandler;
+import org.apache.log4j.Logger;
 
 public class Dao implements IDao<Connection> {
   static Logger log = Logger.getLogger("MetaDaoImpl");
   public String tableName;
   public String idField;
-  
+
   private Map<String, PreparedStatement> statementsCache = new HashMap<>();
 
   private Dao() {
     //
   }
-  
+
   public String tableName() {
     return this.tableName;
   }
-  
+
   public String getIdField() {
     return this.idField;
   }
@@ -76,7 +72,8 @@ public class Dao implements IDao<Connection> {
         PreparedStatement preparedStatement = DaoUtils.createStatement(conn, insertQuery);
         statementsCache.put(queryHash, preparedStatement);
       }
-      retValue = InsertHandler.INSTANCE.insertReusePreparedStatement(dto, statementsCache.get(queryHash));
+      retValue =
+          InsertHandler.INSTANCE.insertReusePreparedStatement(dto, statementsCache.get(queryHash));
     } catch (SQLException e) {
       log.error(e);
     }
@@ -127,9 +124,13 @@ public class Dao implements IDao<Connection> {
     return TableHandler.descTable(tableName, conn);
   }
 
-  public String selectIdWhere(IDto requestDto, IWheresMap wheres, Connection dataConnection,
-      boolean definedAttributes, Integer batchSize) {
-    return SelectHandler.selectIdWhere(requestDto, wheres, dataConnection, definedAttributes, batchSize);
+  public String selectIdWhere(
+      IDto requestDto,
+      IWheresMap wheres,
+      Connection dataConnection,
+      boolean definedAttributes,
+      Integer batchSize) {
+    return SelectHandler.selectIdWhere(
+        requestDto, wheres, dataConnection, definedAttributes, batchSize);
   }
-
 }

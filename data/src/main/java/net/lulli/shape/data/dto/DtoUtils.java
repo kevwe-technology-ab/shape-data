@@ -3,21 +3,16 @@ package net.lulli.shape.data.dto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.shape.data.api.IDto;
-
+import org.apache.log4j.Logger;
 
 public class DtoUtils {
   static Logger log = Logger.getLogger("DtoUtils");
 
-  private DtoUtils() {
+  private DtoUtils() {}
 
-  }
-
-  public static List<String> dtoToCsvRows(List<IDto> listOfDto, boolean containsHeader, String fieldSeparator,
-      String recordSeparator) {
+  public static List<String> dtoToCsvRows(
+      List<IDto> listOfDto, boolean containsHeader, String fieldSeparator, String recordSeparator) {
     ArrayList<String> righe = new ArrayList<>();
     String riga = null;
     boolean headerToAdd = true;
@@ -69,7 +64,8 @@ public class DtoUtils {
     return riga;
   }
 
-  public static String stringListToCsvSingleRow(List<String> list, String fieldSeparator, String recordSeparator) {
+  public static String stringListToCsvSingleRow(
+      List<String> list, String fieldSeparator, String recordSeparator) {
     String riga = "";
     for (String field : list) {
       riga += field;
@@ -79,7 +75,8 @@ public class DtoUtils {
     return riga;
   }
 
-  public static String dtoToCsv(List<IDto> listOfDto, String fieldSeparator, String recordSeparator) {
+  public static String dtoToCsv(
+      List<IDto> listOfDto, String fieldSeparator, String recordSeparator) {
     String csv = "";
     String riga = "";
     for (IDto dto : listOfDto) {
@@ -94,7 +91,11 @@ public class DtoUtils {
     return csv;
   }
 
-  public static IDto csvToDto(String row, List<String> fields, String tableName, String fieldSeparator,
+  public static IDto csvToDto(
+      String row,
+      List<String> fields,
+      String tableName,
+      String fieldSeparator,
       String recordSeparator) {
     IDto singleRow = null;
     try {
@@ -123,7 +124,8 @@ public class DtoUtils {
     return singleRow;
   }
 
-  public static List<String> csvFieldsToList(String row, String fieldSeparator, String recordSeparator) {
+  public static List<String> csvFieldsToList(
+      String row, String fieldSeparator, String recordSeparator) {
     List<String> fields = null;
     try {
 
@@ -144,5 +146,4 @@ public class DtoUtils {
     }
     return fields;
   }
-
 }

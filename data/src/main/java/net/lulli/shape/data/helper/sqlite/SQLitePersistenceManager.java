@@ -25,7 +25,5 @@ public class SQLitePersistenceManager extends AbstractPersistenceManager {
     this.dbName = dbName;
   }
 
-  public void setSQLDialect(String sqlDialect) {
-  }
-
+  public void setSQLDialect(String sqlDialect) {}
 }

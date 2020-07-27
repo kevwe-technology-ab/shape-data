@@ -1,15 +1,10 @@
 package net.lulli.shape.data.impl.cassandra;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
-
 import com.datastax.oss.driver.api.core.CqlSession;
-
+import java.util.List;
 import net.lulli.shape.data.api.IDao;
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IWheresMap;
-import net.lulli.shape.data.impl.jdbc.internal.TableHandler;
 
 public class CassandraDao implements IDao<CqlSession> {
 
@@ -39,7 +34,7 @@ public class CassandraDao implements IDao<CqlSession> {
   public boolean createTable(String tableName, List<String> fields, CqlSession dbConnection) {
     throw new IllegalStateException("not implemented");
   }
-  
+
   @Override
   public List<IDto> runQuery(String sqlInputString, CqlSession dbConnection) {
     throw new IllegalStateException("Not Implemented");
@@ -65,19 +60,19 @@ public class CassandraDao implements IDao<CqlSession> {
     throw new IllegalStateException("Not Implemented");
   }
 
-//  private void createKeyspace(Session session) {
-//      
-//      String keyspaceName, String replicationStrategy, int replicationFactor) {
-//      StringBuilder sb = 
-//        new StringBuilder("CREATE KEYSPACE IF NOT EXISTS ")
-//          .append(keyspaceName).append(" WITH replication = {")
-//          .append("'class':'").append(replicationStrategy)
-//          .append("','replication_factor':").append(replicationFactor)
-//          .append("};");
-//             
-//        String query = sb.toString();
-//        ResultSet execute = session.execute(query);
-//    }
-//  
+  //  private void createKeyspace(Session session) {
+  //
+  //      String keyspaceName, String replicationStrategy, int replicationFactor) {
+  //      StringBuilder sb =
+  //        new StringBuilder("CREATE KEYSPACE IF NOT EXISTS ")
+  //          .append(keyspaceName).append(" WITH replication = {")
+  //          .append("'class':'").append(replicationStrategy)
+  //          .append("','replication_factor':").append(replicationFactor)
+  //          .append("};");
+  //
+  //        String query = sb.toString();
+  //        ResultSet execute = session.execute(query);
+  //    }
+  //
 
 }

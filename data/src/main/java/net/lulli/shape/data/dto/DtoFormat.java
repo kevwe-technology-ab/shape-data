@@ -2,7 +2,6 @@ package net.lulli.shape.data.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import net.lulli.shape.data.dto.field.IntegerField;
 import net.lulli.shape.data.dto.field.TextField;
 
@@ -15,7 +14,7 @@ public class DtoFormat {
   private DtoFormat() {
     fieldList = new ArrayList<DtoField>();
   }
-  
+
   public DtoFormat(String tableName, List<DtoField> fieldList) {
     this.setTableName(tableName);
     this.fieldList = fieldList;
@@ -31,12 +30,12 @@ public class DtoFormat {
     fieldList.add(field);
     return this;
   }
-  
+
   public DtoFormat withId(String fieldName) {
     id = fieldName;
     return this;
   }
-  
+
   public DtoFormat withText(String fieldName, Integer textLength) {
     fieldList.add(new DtoField(fieldName, new TextField(textLength)));
     return this;
@@ -46,7 +45,7 @@ public class DtoFormat {
     fieldList.add(new DtoField(fieldName, new IntegerField()));
     return this;
   }
-  
+
   public void setTableName(String tableName) {
     this.tableName = tableName;
   }

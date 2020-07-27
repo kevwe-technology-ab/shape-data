@@ -4,9 +4,7 @@ import java.util.Hashtable;
 
 public class TypeHelper {
 
-  private TypeHelper() {
-
-  }
+  private TypeHelper() {}
 
   public static Hashtable<String, String> add(Hashtable<String, String> h, String k, String v) {
     if (h == null) {

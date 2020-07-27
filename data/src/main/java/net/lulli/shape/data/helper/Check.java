@@ -1,9 +1,8 @@
 package net.lulli.shape.data.helper;
 
 public final class Check // implements CheckInterface
-{
-  private Check() {
-  }
+ {
+  private Check() {}
 
   public static boolean isNull(String input) {
     return (input == null) ? true : false;

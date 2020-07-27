@@ -3,28 +3,24 @@ package net.lulli.shape.data.impl.jdbc.internal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IWheresMap;
 import net.lulli.shape.data.dao.DaoUtils;
 import net.lulli.shape.data.dto.Dto;
+import org.apache.log4j.Logger;
 
 public class UpdateHandler {
   static Logger log = Logger.getLogger("UpdateHandler");
 
-  private UpdateHandler() {
-  }
-  
+  private UpdateHandler() {}
+
   public static int updateLegacy(IDto dto, IWheresMap wheres, Connection conn) throws SQLException {
     int updatedNo = -1;
     String sql = createUpdateQuery(dto, wheres);
-    
+
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        updatedNo =  DaoUtils.executePreparedStatement(dto, pstmt);
+      updatedNo = DaoUtils.executePreparedStatement(dto, pstmt);
     }
     return updatedNo;
   }
@@ -34,7 +30,7 @@ public class UpdateHandler {
     Set<String> keys = dto.keySet();
 
     String sql = "UPDATE " + dto.tableName() + " set ";
-    
+
     Set<String> whereKeysP1 = wheres.keySet();
     boolean isFirstP1 = true;
     for (String whereKey : whereKeysP1) {

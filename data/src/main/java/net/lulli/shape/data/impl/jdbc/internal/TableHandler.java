@@ -9,20 +9,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
-import org.apache.log4j.Logger;
-
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.dto.Dto;
+import org.apache.log4j.Logger;
 
 public class TableHandler<T> {
   static Logger log = Logger.getLogger("TableHandler");
   public static final TableHandler INSTANCE = new TableHandler();
 
-  private TableHandler() {
-  }
+  private TableHandler() {}
 
-  public static boolean createTable(String tableName, List<String> fields, Connection conn) throws SQLException {
+  public static boolean createTable(String tableName, List<String> fields, Connection conn)
+      throws SQLException {
     String sqlString;
     boolean isCreated = false;
     StringBuilder sb = new StringBuilder();
@@ -44,12 +42,12 @@ public class TableHandler<T> {
     sqlString = sb.toString();
     log.debug("SQL:[" + sqlString + "]");
     try (PreparedStatement pstmt = conn.prepareStatement(sqlString)) {
-       pstmt.execute();
-       isCreated = true; //NB: Execute returns false for successful create !
+      pstmt.execute();
+      isCreated = true; // NB: Execute returns false for successful create !
     }
     return isCreated;
   }
-  
+
   public static IDto descTable(String tableName, Connection conn) {
     Dto responseDto = null;
     String sqlString = "select * from ? limit 1";
