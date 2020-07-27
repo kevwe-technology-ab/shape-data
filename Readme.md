@@ -12,4 +12,4 @@ Interfaces
 Implementation Project
 
 ## android
-Work In Progress : stay away !
+Will appear sometime in the future
