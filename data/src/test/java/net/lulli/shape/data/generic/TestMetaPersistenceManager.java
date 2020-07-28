@@ -9,6 +9,7 @@ import net.lulli.shape.data.AbstractPersistenceManager;
 import net.lulli.shape.data.api.IDialect;
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IPersistenceManager;
+import net.lulli.shape.data.api.IWheresMap;
 import net.lulli.shape.data.dao.DaoFactory;
 import net.lulli.shape.data.dto.Dto;
 import net.lulli.shape.data.dto.Wheres;
@@ -52,9 +53,9 @@ public class TestMetaPersistenceManager {
   private void insertHelp(
       IPersistenceManager pm, String tableName, String one, String two, String three) {
     IDto insertDto = Dto.of(tableName);
-    insertDto.put("one", one);
-    insertDto.put("two", two);
-    insertDto.put("three", three);
+    insertDto.put("name", one);
+    insertDto.put("surname", two);
+    insertDto.put("email", three);
     Assert.assertEquals(Integer.valueOf(1), pm.insert(insertDto));
   }
 
@@ -77,7 +78,7 @@ public class TestMetaPersistenceManager {
   public void testInsert() throws IOException {
     IPersistenceManager pm = getPersistanceManager();
     String tableName = "tinsert";
-    pm.createTable(tableName, Arrays.asList("one", "two", "three"));
+    pm.createTable(tableName, Arrays.asList("name", "surname", "email"));
     insertHelp(pm, tableName, "11111111111111111", "222222222222222", "333");
     pm.dropTable(tableName);
   }
@@ -112,7 +113,20 @@ public class TestMetaPersistenceManager {
   public void testInsertThree() throws IOException {
     IPersistenceManager pm = getPersistanceManager();
     String tableName = "tinsert";
-    pm.createTable(tableName, Arrays.asList("one", "two", "three"));
+    pm.createTable(tableName, Arrays.asList("name", "surname", "email"));
+    insertHelp(pm, tableName, "11111111111111111", "222222222222222", "333");
+    insertHelp(pm, tableName, "xxx", "yy", "zz");
+    insertHelp(pm, tableName, "www", "ggg", "uuuu");
+    List<IDto> dtoList = pm.query("select * from " + tableName);
+    Assert.assertEquals(3, dtoList.size());
+    pm.dropTable(tableName);
+  }
+
+  @Test
+  public void testMoreInsert() throws IOException {
+    IPersistenceManager pm = getPersistanceManager();
+    String tableName = "tupdate";
+    pm.createTable(tableName, Arrays.asList("name", "surname", "email"));
     insertHelp(pm, tableName, "11111111111111111", "222222222222222", "333");
     insertHelp(pm, tableName, "xxx", "yy", "zz");
     insertHelp(pm, tableName, "www", "ggg", "uuuu");
@@ -124,33 +138,46 @@ public class TestMetaPersistenceManager {
   @Test
   public void testUpdate() throws IOException {
     IPersistenceManager pm = getPersistanceManager();
-    String tableName = "tupdate";
-    pm.createTable(tableName, Arrays.asList("one", "two", "three"));
-    insertHelp(pm, tableName, "11111111111111111", "222222222222222", "333");
-    insertHelp(pm, tableName, "xxx", "yy", "zz");
-    insertHelp(pm, tableName, "www", "ggg", "uuuu");
+    String tableName = "storage";
+    pm.createTable(tableName, Arrays.asList("name", "surname", "email"));
+    insertHelp(pm, tableName, "Donald", "222222222222222", "333");
+    insertHelp(pm, tableName, "xxx", "yy", "zz@test.com");
+    insertHelp(pm, tableName, "www", "ggg", "uuuu@test.com");
     List<IDto> dtoList = pm.query("select * from " + tableName);
     Assert.assertEquals(3, dtoList.size());
+    
+    Wheres wheres = new Wheres();
+    wheres.put("name", "Donald");
+    Dto updatedDto = Dto.of(tableName);
+    updatedDto.put("name", "Osvald");
+    updatedDto.put("surname", "Strange");
+    updatedDto.put("email", "nowhere@test.com");
+    
+    pm.update(updatedDto, wheres);
+    
+    
     pm.dropTable(tableName);
   }
-
+  
+  
+  
   @Test
   public void testDelete() throws IOException {
     IPersistenceManager pm = getPersistanceManager();
     String tableName = "tdelete";
-    pm.createTable(tableName, Arrays.asList("one", "two", "three"));
+    pm.createTable(tableName, Arrays.asList("name", "surname", "email"));
     insertHelp(pm, tableName, "11111111111111111", "222222222222222", "333");
     insertHelp(pm, tableName, "xxx", "yy", "zz");
     insertHelp(pm, tableName, "www", "ggg", "uuuu");
 
     Wheres wheresMap = new Wheres();
-    wheresMap.put("one", "11111111111111111");
+    wheresMap.put("name", "11111111111111111");
 
     IDto delendaValue = Dto.of(tableName);
     pm.delete(delendaValue, wheresMap);
     Assert.assertEquals(2, pm.query("select * from " + tableName).size());
 
-    wheresMap.put("one", "xxx");
+    wheresMap.put("name", "xxx");
     pm.delete(delendaValue, wheresMap);
 
     Assert.assertEquals(1, pm.query("select * from " + tableName).size());
@@ -161,7 +188,7 @@ public class TestMetaPersistenceManager {
   public void readFormatted() throws IOException {
     IPersistenceManager pm = getPersistanceManager();
     String tableName = "tinserttwo";
-    pm.createTable(tableName, Arrays.asList("one", "two", "three"));
+    pm.createTable(tableName, Arrays.asList("name", "surname", "email"));
     insertHelp(pm, tableName, "11111111111111111", "222222222222222", "333");
     insertHelp(pm, tableName, "xxx", "yy", "zz");
     insertHelp(pm, tableName, "www", "ggg", "uuuu");
