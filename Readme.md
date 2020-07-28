@@ -7,8 +7,35 @@ An opinionated approach to Data Persistence
 *	Optimized towards developer's productivity
 
 ## Api
-Interfaces
 
+An interface for multiple persistence backends 
+
+```
+public interface IPersistenceManager {
+
+  public Integer insert(IDto dto);
+
+  public Integer update(IDto dto, IWheresMap wheres);
+
+  public Integer delete(IDto dto, IWheresMap wheres);
+
+  public Integer save(IDto dto, IWheresMap wheres);
+
+  public Integer selectCount(IDto requestDto, IWheresMap wheres, boolean definedAttributes);
+
+  public List<String> descTable(String tableName);
+
+  public boolean createTable(String tableName, List<String> fields);
+
+  public boolean dropTable(String tableName);
+
+  public void setSQLDialect(String sqlDialect);
+
+  public List<IDto> query(String sql, String... args);
+
+  public int execute(String sql, String... args);
+}
+```
 
 ## Data
 
