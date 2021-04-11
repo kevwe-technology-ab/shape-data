@@ -1,6 +1,6 @@
 package net.lulli.shape.data.api;
 
-public enum IDialect {
+public enum Dialect {
   STANDARD,
   ORACLE,
   MYSQL,
