@@ -118,7 +118,7 @@ public abstract class AbstractPersistenceManager
     }
     if (null != dao) {
       try {
-        id = dao.selectIdWhere(dto, wheres, conn, false, new Integer(1));
+        id = dao.selectIdWhere(dto, wheres, conn, false, Integer.valueOf(1));
       } catch (Exception e) {
         log.error("Cannot decode record from table=[" + dto.tableName() + "]");
       } finally {
@@ -137,7 +137,7 @@ public abstract class AbstractPersistenceManager
     }
   }
 
-  public Integer selectCount(IDto requestDto, IWheresMap wheres, boolean definedAttributes) {
+  public Integer selectCount(IDto requestDto, IWheresMap wheres) {
     AbstractDbConnectionManager dbManager = getDbConnectionManager();
     Connection conn = null;
     Dao dao;
