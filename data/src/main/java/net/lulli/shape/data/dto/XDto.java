@@ -1,5 +1,6 @@
 package net.lulli.shape.data.dto;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,5 +69,18 @@ public final class XDto implements IDto {
   @Override
   public void remove(String key) {
     payload.remove(key);
+  }
+
+  public void put(IDto dto) {
+    throw new IllegalStateException("Not Implemented");
+  }
+  
+  public Collection<Object> values() {
+    throw new IllegalStateException("Not Implemented");
+  }
+  
+  @Override
+  public Map<String, Object> getMap() {
+    throw new IllegalStateException("Not Implemented");
   }
 }

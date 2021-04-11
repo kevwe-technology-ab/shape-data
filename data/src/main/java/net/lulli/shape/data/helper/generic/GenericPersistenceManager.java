@@ -1,6 +1,7 @@
 package net.lulli.shape.data.helper.generic;
 
 import net.lulli.shape.data.AbstractPersistenceManager;
+import net.lulli.shape.data.api.Dialect;
 import net.lulli.shape.data.connection.AbstractDbConnectionManager;
 import net.lulli.shape.data.helper.DbConnectionParameters;
 
@@ -20,6 +21,6 @@ public class GenericPersistenceManager extends AbstractPersistenceManager {
 
   @Override
   public void setSQLDialect(String sqlDialect) {
-    this.sqlDialect = sqlDialect;
+    this.sqlDialect = Dialect.valueOf(sqlDialect);
   }
 }

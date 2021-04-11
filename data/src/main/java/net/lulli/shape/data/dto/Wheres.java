@@ -8,7 +8,7 @@ import net.lulli.shape.data.api.IWheresMap;
 
 public class Wheres implements IWheresMap {
 
-  private final Hashtable<Object, Object> hashtable = new Hashtable<Object, Object>();
+  private final Hashtable<String,String> hashtable = new Hashtable<>();
 
   @Override
   public String getString(String key) {
@@ -36,12 +36,12 @@ public class Wheres implements IWheresMap {
   }
 
   @Override
-  public Object get(Object key) {
+  public String get(Object key) {
     return hashtable.get(key);
   }
 
   @Override
-  public Object remove(Object key) {
+  public String remove(Object key) {
     return hashtable.remove(key);
   }
 
@@ -71,7 +71,7 @@ public class Wheres implements IWheresMap {
   }
 
   @Override
-  public Object put(Object key, Object value) {
+  public String put(String key, String value) {
     return hashtable.put(key, value);
   }
 }

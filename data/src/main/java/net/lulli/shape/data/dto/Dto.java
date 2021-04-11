@@ -1,6 +1,8 @@
 package net.lulli.shape.data.dto;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 import net.lulli.shape.data.api.IDto;
 
@@ -27,6 +29,10 @@ public class Dto implements IDto {
 
   public static Dto of(String tableName) {
     return new Dto(tableName);
+  }
+  
+  public void put(IDto dto) {
+    hashMap.putAll(dto.getMap());
   }
 
   public void put(String key, String value) {
@@ -58,8 +64,16 @@ public class Dto implements IDto {
     return hashMap.keySet();
   }
 
+  public Collection<Object> values() {
+    return hashMap.values();
+  }
+  
   @Override
   public boolean containsKey(Object key) {
     return hashMap.containsKey(key);
+  }
+
+  public Map<String, Object> getMap() {
+    return hashMap;
   }
 }

@@ -7,6 +7,10 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.log4j.Logger;
+
+import net.lulli.shape.data.api.Dialect;
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IWheresMap;
 import net.lulli.shape.data.connection.AbstractDbConnectionManager;
@@ -14,13 +18,11 @@ import net.lulli.shape.data.dao.DaoFactory;
 import net.lulli.shape.data.dto.Dto;
 import net.lulli.shape.data.dto.Wheres;
 import net.lulli.shape.data.impl.jdbc.Dao;
-import net.lulli.shape.data.model.SQLDialect;
-import org.apache.log4j.Logger;
 
 public abstract class AbstractPersistenceManager
     implements net.lulli.shape.data.api.IPersistenceManager {
   static Logger log = Logger.getLogger("AbstractMetaPersistenceManager");
-  protected String sqlDialect = SQLDialect.STANDARD;
+  protected Dialect sqlDialect = Dialect.STANDARD;
 
   public abstract AbstractDbConnectionManager getDbConnectionManager();
 
@@ -152,10 +154,10 @@ public abstract class AbstractPersistenceManager
 
   public List<String> descTable(String tableName) {
     List<String> fieldList = null;
-    String sqlDialect = this.getSQLDialect();
+    Dialect sqlDialect = this.getSQLDialect();
     log.trace("Detected SQLDialect:[" + sqlDialect + "]");
 
-    if (sqlDialect.equals(STANDARD)) {
+    if (sqlDialect.equals(Dialect.STANDARD)) {
       fieldList = descTableConcrete(tableName);
     }
     return fieldList;
@@ -213,7 +215,7 @@ public abstract class AbstractPersistenceManager
     return dropped;
   }
 
-  public String getSQLDialect() {
+  public Dialect getSQLDialect() {
     return sqlDialect;
   }
 
@@ -228,7 +230,7 @@ public abstract class AbstractPersistenceManager
     Dao dao;
     List<IDto> results = null;
 
-    String sqlDialect = this.sqlDialect;
+    Dialect sqlDialect = this.sqlDialect;
     try {
       log.trace("BEFORE conn");
       conn = dbManager.getConnection();

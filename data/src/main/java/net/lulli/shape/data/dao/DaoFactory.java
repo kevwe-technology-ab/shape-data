@@ -1,6 +1,8 @@
 package net.lulli.shape.data.dao;
 
 import java.util.Hashtable;
+
+import net.lulli.shape.data.api.Dialect;
 import net.lulli.shape.data.impl.jdbc.Dao;
 
 public class DaoFactory {
@@ -9,7 +11,7 @@ public class DaoFactory {
 
   private DaoFactory() {}
 
-  public static Dao createMetaDao(String tableName, String sqlDialect) {
+  public static Dao createMetaDao(String tableName, Dialect sqlDialect) {
     return getNewMetaDao(tableName);
   }
 

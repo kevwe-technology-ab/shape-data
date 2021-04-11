@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.util.Arrays;
 import java.util.List;
 import net.lulli.shape.data.AbstractPersistenceManager;
-import net.lulli.shape.data.api.IDialect;
+import net.lulli.shape.data.api.Dialect;
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IPersistenceManager;
 import net.lulli.shape.data.api.IWheresMap;
@@ -28,7 +28,7 @@ public class TestMetaPersistenceManager {
     DbConnectionParameters.Builder builder = new DbConnectionParameters.Builder();
     builder
         .setDriverClassName("org.sqlite.JDBC")
-        .setDialect(IDialect.SQLITE)
+        .setDialect(Dialect.SQLITE.toString())
         .setPassword("")
         .setUser("")
         .setJdbcUrl("jdbc:sqlite:" + tempFile.getAbsolutePath());
