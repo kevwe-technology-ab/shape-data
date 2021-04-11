@@ -154,22 +154,23 @@ public abstract class AbstractPersistenceManager
 
   public List<String> descTable(String tableName) {
     List<String> fieldList = null;
-    Dialect sqlDialect = this.getSQLDialect();
-    log.trace("Detected SQLDialect:[" + sqlDialect + "]");
+    Dialect dialect = this.getSQLDialect();
+    log.trace("Detected SQLDialect:[" + dialect + "]");
 
-    if (sqlDialect.equals(Dialect.STANDARD)) {
+    if (dialect.equals(Dialect.STANDARD)) {
       fieldList = descTableConcrete(tableName);
     }
     return fieldList;
   }
 
   private List<String> descTableConcrete(String tableName) {
-    List<String> fieldList = new ArrayList<String>();
+    List<String> fieldList = new ArrayList<>();
     try {
-      Hashtable wheres = null;
       List<IDto> risultati = query("select * from " + tableName);
-      IDto rigaZero = risultati.get(0); // BAD: funziona solo se la tabella ha almeno 1
-      // record!!
+      if (risultati.size() == 0) {
+    	  return fieldList;// empty
+      }
+      IDto rigaZero = risultati.get(0); 
       Set<String> keys = rigaZero.keySet();
       Iterator<String> iter = keys.iterator();
       String field;

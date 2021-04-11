@@ -8,18 +8,18 @@ import net.lulli.shape.data.api.IDto;
 
 public class Dto implements IDto {
   public static final String DEFAULT_RESULTSET_NAME = "resultset";
-  public final String tableName;
+  public final String table;
   public String recordType;
   public String idField;
 
   private final LinkedHashMap<String, Object> hashMap = new LinkedHashMap<>();
 
   private Dto(String tableName) {
-    this.tableName = tableName;
+    this.table = tableName;
   }
 
   public String tableName() {
-    return this.tableName;
+    return this.table;
   }
 
   // TODO

@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 public class DbManager extends AbstractDbConnectionManager {
   public static DbManager INSTANCE = new DbManager();
 
-  static Logger log = Logger.getLogger("AbstractDbConnectionManager");
+  static Logger log = Logger.getLogger("DbManager");
   protected String jdbcUrl;
   protected String driveClassName;
   protected String databaseUser;

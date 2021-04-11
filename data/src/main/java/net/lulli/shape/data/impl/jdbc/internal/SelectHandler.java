@@ -138,7 +138,7 @@ public class SelectHandler {
     Dto responseDto = null;
     ResultSet rs = null;
     try {
-      String sqlString = "SELECT * FROM " + requestDto.tableName + " WHERE ";
+      String sqlString = "SELECT * FROM " + requestDto.tableName() + " WHERE ";
       Set<String> whereFields = wheres.keySet();
       int idx = 0;
       for (String where : whereFields) {
@@ -179,7 +179,7 @@ public class SelectHandler {
 
       while (rs.next()) {
         log.debug("rs.next()");
-        responseDto = Dto.of(requestDto.tableName);
+        responseDto = Dto.of(requestDto.tableName());
         Set<String> keys;
         if (definedAttributes) {
           // requestDto contiene i nomi delle colonne da stampare
