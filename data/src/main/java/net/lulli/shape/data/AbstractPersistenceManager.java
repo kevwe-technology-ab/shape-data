@@ -218,7 +218,7 @@ public abstract class AbstractPersistenceManager
   }
 
   public List<IDto> query(String sql, String... args) {
-    return query(String.format(sql, (Object[]) args));
+    return query(String.format(sql, args));
   }
 
   private List<IDto> query(String sqlInputString) {

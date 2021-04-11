@@ -2,7 +2,7 @@ package net.lulli.shape.data.api;
 
 import java.util.List;
 
-public interface IPersistenceManager extends IDialect {
+public interface IPersistenceManager{
 
   public Integer insert(IDto dto);
 
