@@ -12,7 +12,7 @@ public interface IPersistenceManager{
 
   public Integer save(IDto dto, IWheresMap wheres);
 
-  public Integer selectCount(IDto requestDto, IWheresMap wheres, boolean definedAttributes);
+  public Integer selectCount(IDto requestDto, IWheresMap wheres);
 
   public List<String> descTable(String tableName);
 

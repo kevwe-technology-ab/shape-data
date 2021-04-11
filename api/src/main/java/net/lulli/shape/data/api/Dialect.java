@@ -11,7 +11,7 @@ public enum Dialect {
 	CASSANDRA("cassandra");
 
 	private String dialectString;
-
+	
 	Dialect(String dialect) {
 		this.dialectString = dialect;
 	}
