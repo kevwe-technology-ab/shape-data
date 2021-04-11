@@ -7,7 +7,6 @@ import java.util.Map;
 
 import net.lulli.shape.data.api.IDto;
 import net.lulli.shape.data.api.IPersistenceManager;
-import net.lulli.shape.data.dto.Dto;
 
 public class Relations {
   private final IPersistenceManager persistenceManager;
@@ -72,7 +71,6 @@ public class Relations {
 
   private String commaKeyValuePairs(IDto fields) {
     Collection<String> sourceFields = fields.keySet();
-    //Collection targetFields = fields.values();
     boolean isFirst = true;
     StringBuilder sb = new StringBuilder();
     for (String key : sourceFields) {

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.lulli</groupId>
   <artifactId>shape-data</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.3</version>
   <description>A MetaDataAccessObject library</description>
   <!-- homepage for the project -->
   <properties>
@@ -43,7 +43,7 @@
     <dependency>
       <groupId>net.lulli</groupId>
       <artifactId>shape-data-api</artifactId>
-      <version>${project.version}</version>
+      <version>0.0.3</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>

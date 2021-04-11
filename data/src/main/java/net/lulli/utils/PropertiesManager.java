@@ -2,6 +2,7 @@ package net.lulli.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import org.apache.log4j.Logger;
@@ -15,30 +16,46 @@ public class PropertiesManager {
 
   static Logger log = Logger.getLogger("PropertiesManager");
 
-  private PropertiesManager(File configurationFile) {
+  private PropertiesManager(File configurationFile) throws IOException {
+	  InputStream fileInputStream = null;
     try {
-      InputStream fileInputStream = new FileInputStream(configurationFile);
+      fileInputStream = new FileInputStream(configurationFile);
       properties = new Properties();
       properties.load(fileInputStream);
     } catch (Exception e) {
       log.error("Cannot load file: [" + configurationFileName + "]");
       throw new IllegalStateException("Cannot load file: [" + configurationFileName + "]");
-    }
+    } finally {
+		if (null != fileInputStream) {
+			fileInputStream.close();
+		}
+	}
   }
 
-  private PropertiesManager(String configurationFileName) {
+  private PropertiesManager(String configurationFileName) throws IOException {
     properties = new Properties();
+    FileInputStream fileInputStream = null;
     try {
-      properties.load(new FileInputStream(configurationFileName));
+    	fileInputStream = new FileInputStream(configurationFileName);
+      properties.load(fileInputStream);
     } catch (Exception e) {
       log.error("Cannot load file: [" + configurationFileName + "]");
       throw new IllegalStateException("Cannot load file: [" + configurationFileName + "]");
     }
+    finally {
+		if (null != fileInputStream) {
+			fileInputStream.close();
+		}
+	}
   }
 
   public static PropertiesManager getInstance() {
     if (istanza == null) {
-      istanza = new PropertiesManager(APPLICATION_CONFIGURATION_FILE);
+      try {
+		istanza = new PropertiesManager(APPLICATION_CONFIGURATION_FILE);
+	} catch (IOException e) {
+		throw new IllegalStateException("Cannot instantiate PropertiesManager");
+	}
     }
     return istanza;
   }
@@ -48,10 +65,18 @@ public class PropertiesManager {
   }
 
   public static PropertiesManager from(String configurationFileName) {
-    return new PropertiesManager(configurationFileName);
+    try {
+		return new PropertiesManager(configurationFileName);
+	} catch (IOException e) {
+		throw new IllegalStateException("Cannot instantiate PropertiesManager");
+	}
   }
 
   public static PropertiesManager fromFile(File configurationFile) {
-    return new PropertiesManager(configurationFile);
+    try {
+		return new PropertiesManager(configurationFile);
+	} catch (IOException e) {
+		throw new IllegalStateException("Cannot instantiate PropertiesManager");
+	}
   }
 }

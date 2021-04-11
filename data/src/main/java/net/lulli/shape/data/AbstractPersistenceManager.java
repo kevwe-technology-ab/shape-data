@@ -166,7 +166,7 @@ public abstract class AbstractPersistenceManager implements IPersistenceManager 
     List<String> fieldList = new ArrayList<>();
     try {
       List<IDto> risultati = query("select * from " + tableName);
-      if (risultati.size() == 0) {
+      if ( (null == risultati) || (risultati.size() == 0)) {
     	  return fieldList;// empty
       }
       IDto rigaZero = risultati.get(0); 
@@ -224,7 +224,6 @@ public abstract class AbstractPersistenceManager implements IPersistenceManager 
   }
 
   private List<IDto> query(String sqlInputString) {
-    log.trace("BEGIN search");
     AbstractDbConnectionManager dbManager = getDbConnectionManager();
     Connection conn = null;
     Dao dao;
@@ -232,9 +231,7 @@ public abstract class AbstractPersistenceManager implements IPersistenceManager 
 
     Dialect sqlDialect = this.sqlDialect;
     try {
-      log.trace("BEFORE conn");
       conn = dbManager.getConnection();
-      log.trace("AFTER conn");
       dao = DaoFactory.createMetaDao(Dto.DEFAULT_RESULTSET_NAME, sqlDialect);
       results = dao.runQuery(sqlInputString, conn);
     } catch (Exception e) {
