@@ -18,8 +18,8 @@ import net.lulli.shape.data.impl.jdbc.internal.UpdateHandler;
 import org.apache.log4j.Logger;
 
 public class Dao implements IDao<Connection> {
-  static Logger log = Logger.getLogger("MetaDaoImpl");
-  public String tableName;
+  static Logger log = Logger.getLogger("Dao");
+  public String table;
   public String idField;
 
   private Map<String, PreparedStatement> statementsCache = new HashMap<>();
@@ -29,7 +29,7 @@ public class Dao implements IDao<Connection> {
   }
 
   public String tableName() {
-    return this.tableName;
+    return this.table;
   }
 
   public String getIdField() {
@@ -37,7 +37,7 @@ public class Dao implements IDao<Connection> {
   }
 
   public Dao(String tableName) {
-    this.tableName = tableName;
+    this.table = tableName;
   }
 
   public boolean dropTable(String tableName, Connection dataConnection) {

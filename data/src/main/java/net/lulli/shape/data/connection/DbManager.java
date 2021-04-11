@@ -12,6 +12,7 @@ public class DbManager extends AbstractDbConnectionManager {
   public static DbManager INSTANCE = new DbManager();
 
   static Logger log = Logger.getLogger("DbManager");
+  /*
   protected String jdbcUrl;
   protected String driveClassName;
   protected String databaseUser;
@@ -20,7 +21,7 @@ public class DbManager extends AbstractDbConnectionManager {
   protected List<Connection> connections;
   protected int poolSize = 3;
   protected int connection_counter;
-
+*/
   public Connection getConnection() {
     Connection con = null;
     connection_counter++;

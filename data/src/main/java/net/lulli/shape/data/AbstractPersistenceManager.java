@@ -3,7 +3,6 @@ package net.lulli.shape.data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import net.lulli.shape.data.api.Dialect;
 import net.lulli.shape.data.api.IDto;
+import net.lulli.shape.data.api.IPersistenceManager;
 import net.lulli.shape.data.api.IWheresMap;
 import net.lulli.shape.data.connection.AbstractDbConnectionManager;
 import net.lulli.shape.data.dao.DaoFactory;
@@ -19,18 +19,17 @@ import net.lulli.shape.data.dto.Dto;
 import net.lulli.shape.data.dto.Wheres;
 import net.lulli.shape.data.impl.jdbc.Dao;
 
-public abstract class AbstractPersistenceManager
-    implements net.lulli.shape.data.api.IPersistenceManager {
-  static Logger log = Logger.getLogger("AbstractMetaPersistenceManager");
+public abstract class AbstractPersistenceManager implements IPersistenceManager {
+  static Logger log = Logger.getLogger("AbstractPersistenceManager");
   protected Dialect sqlDialect = Dialect.STANDARD;
 
   public abstract AbstractDbConnectionManager getDbConnectionManager();
 
-  public Integer insert(net.lulli.shape.data.api.IDto dto) {
+  public Integer insert(IDto dto) {
     return insertLegacy(dto);
   }
 
-  private int insertLegacy(net.lulli.shape.data.api.IDto dto) {
+  private int insertLegacy(IDto dto) {
     AbstractDbConnectionManager dbManager = getDbConnectionManager();
     Connection conn = null;
     Dao dao;

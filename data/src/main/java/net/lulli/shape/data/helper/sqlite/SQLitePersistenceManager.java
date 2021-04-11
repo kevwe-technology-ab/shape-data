@@ -5,7 +5,6 @@ import net.lulli.shape.data.connection.AbstractDbConnectionManager;
 
 public class SQLitePersistenceManager extends AbstractPersistenceManager {
   private String dbName;
-  private String sqlDialect;
 
   public AbstractDbConnectionManager getDbConnectionManager() {
     SQLiteDbManager dbManager;
