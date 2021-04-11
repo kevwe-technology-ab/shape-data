@@ -16,7 +16,7 @@ public enum Dialect {
 		this.dialectString = dialect;
 	}
 
-	String count() {
-		return dialect;
+	String value() {
+		return dialectString;
 	}
 }
